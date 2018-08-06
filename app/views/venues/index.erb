@@ -1,0 +1,10 @@
+<h1>List of Venues</h1>
+
+<% @users.each do |user|%>
+  <p><%= user.username %>'s venues<p>
+    <% user.venues.each do |venue|%>
+      <a href="/venues/<%= user.username %>/<%= venue.id %>"><%= venue.name%></a>
+    <%end%>
+  <%end%>
+
+<a href="/venues">Back</a>

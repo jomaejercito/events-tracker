@@ -38,10 +38,15 @@ class VenuesController < ApplicationController
     end
   end
 
+  get '/venues/index' do
+    @users = User.all
+    erb :'venues/index'
+  end
+
   get '/venues/:username/:venue_id' do
     @user = User.find_by(username: params[:username])
     @venue = Venue.find_by_id(params[:venue_id])
-    erb :"venues/index"
+    erb :'venues/venue'
   end
 
   post '/venues/:username/:venue_id' do

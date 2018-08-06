@@ -1,0 +1,12 @@
+<h1>Add Event</h1>
+<br><br>
+
+  <form action="/events/<%= @venue.id %>" method="POST">
+    <p>Event Name:</p> <input type="text" name="name"><br>
+    <br>
+    <p>Event Date:</p> <input type="text" name="date"><br>
+    <br>
+    <p>Event Time:</p> <input type="text" name="time"><br>
+    <br>
+    <input type="submit" name="" value="Add Event">
+  </form>

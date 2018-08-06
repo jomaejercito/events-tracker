@@ -1,4 +1,4 @@
-class VenueEvents < ActiveRecord::Migration
+class CreateVenueEvents < ActiveRecord::Migration
   def change
     create_table :venue_events do |t|
       t.integer :events_id
