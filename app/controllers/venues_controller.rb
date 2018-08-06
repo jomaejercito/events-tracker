@@ -2,7 +2,7 @@ class VenuesController < ApplicationController
 
   get '/venues' do
     if logged_in?
-      @venues = Venue.all
+      @user = User.find_by_id(session[:user_id])
       erb :'/venues/venues'
     else
       redirect to '/login'
@@ -30,9 +30,9 @@ class VenuesController < ApplicationController
 
   get '/venues/:username' do
     @user = User.find_by(username: params[:username])
-    @venues = @user.venue
+    @venues = @user.venues
     if logged_in? && current_user == @user
-      erb :"venue/show"
+      erb :"venues/show"
     else
       redirect to '/login'
     end
