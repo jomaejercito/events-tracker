@@ -9,10 +9,10 @@ class UsersController < ApplicationController
 
   post '/signup' do
     if params[:username].empty? || params[:email].empty? || params[:password].empty?
-      flash[:message] = "All fields are required."
+      #flash[:message] = "All fields are required."
       redirect '/signup'
     elsif !params[:email].match /@/
-      flash[:message] = "Incorrect username or password."
+      #flash[:message] = "Incorrect username or password."
       redirect '/signup'
     else
       @user = User.create(params)
