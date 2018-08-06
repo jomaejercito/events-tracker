@@ -9,19 +9,21 @@ class UsersController < ApplicationController
 
   post '/signup' do
     if params[:username].empty? || params[:email].empty? || params[:password].empty?
+      flash[:message] = "All fields are required."
       redirect '/signup'
     elsif !params[:email].match /@/
+      flash[:message] = "Incorrect username or password."
       redirect '/signup'
     else
       @user = User.create(params)
       session[:user_id] = @user.id
-      redirect '/users/index'
+      redirect '/venues'
     end
   end
 
   get '/login' do
     if logged_in?
-      redirect to '/users/index'
+      redirect to '/venues'
     else
       erb :'users/login'
     end
@@ -43,14 +45,6 @@ class UsersController < ApplicationController
     redirect '/'
   end
 
-  get '/users/index' do
-    if logged_in?
-      @venues = Venue.all
-      erb :'/users/index'
-    else
-      redirect to '/login'
-    end
-  end
 
   get "/users/:slug" do
     @user = User.find_by_slug(params[:slug])
