@@ -11,7 +11,17 @@ class VenuesController < ApplicationController
 
   get '/venues/new' do
     if logged_in?
-      erb :"venues/new"
+      erb :'venues/new'
+    else
+      redirect to '/login'
+    end
+  end
+
+  get '/venues/:username' do
+    @user = User.find_by(username: params[:username])
+    @venues = @user.venues
+    if logged_in? && current_user == @user
+      erb :'venues/show'
     else
       redirect to '/login'
     end
@@ -28,20 +38,24 @@ class VenuesController < ApplicationController
     end
   end
 
-  get '/venues/:username' do
-    @user = User.find_by(username: params[:username])
-    @venues = @user.venues
-    if logged_in? && current_user == @user
-      erb :"venues/show"
-    else
-      redirect to '/login'
-    end
-  end
-
   get '/venues/:username/:venue_id' do
     @user = User.find_by(username: params[:username])
     @venue = Venue.find_by_id(params[:venue_id])
     erb :"venues/index"
+  end
+
+  post '/venues/:username/:venue_id' do
+    @user = User.find_by(username: params[:username])
+    @venue = Venue.find_by_id(params[:venue_id])
+    @venue.update(rating: params[:rating])
+    redirect to "/venues/#{@user.username}"
+  end
+
+  delete '/venues/:username/:venue_id/delete' do
+    @user = User.find_by(username: params[:username])
+    @venue = Venue.find_by_id(params[:venue_id])
+    @venue.delete
+    redirect to "/venues/#{@user.username}"
   end
 
 end
