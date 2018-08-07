@@ -3,7 +3,7 @@
 <br>
 <% @venue.events.each do |event| %>
   <ul>
-    <li><a href="/event/<%= @venue.id %>/<%= event.id %>/edit"><%= event.name %> : <%= event.date %> at <%= event.time %></li></a>
+    <li><a href="/event/<%= @venue.id %>/<%= event.id %>/edit"><h3><%= event.name %></h3></a><%= event.date %> at <%= event.time %></li><br>
   <ul>
 <%end%>
 
