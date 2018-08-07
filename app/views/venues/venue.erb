@@ -2,6 +2,16 @@
 <br>
 <h2>Event</h2>
 
+<% @venue.events.each do |event| %>
+  <ul>
+  <li><a href="/event/<%= @venue.id %>/<%= event.id %>/edit"><%= event.name %></li></a><!-- : <%= event.date %> at <%= event.time %></li></a> -->
+  <ul>
+<%end%>
 
-<a href="/event/<%= @venue.id %>/new">Add Event</a>
+<br>
+<br>
+<br>
+<a href="/event/<%= @venue.id %>/new">Add Event</a><br>
+
+
 <li><a href="/venues"> Back </a></li>
