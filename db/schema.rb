@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 4) do
   end
 
   create_table "venue_events", force: :cascade do |t|
-    t.integer "events_id"
+    t.integer "event_id"
     t.integer "venue_id"
   end
 
