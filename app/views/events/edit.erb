@@ -1,0 +1,19 @@
+<h1>Edit Event</h1>
+<br>
+
+<form action="/event/<%= @venue.id %>/<%= @event.id %>" method="POST">
+  <input id="hidden" type="hidden" name="_method" value="PATCH">
+  <p>Event name:</p> <input type="text" name="name" value= <%=@event.name%> ><br>
+  <br>
+  <p>Event date:</p> <input type="text" name="date" value= <%=@event.date%> ><br>
+  <br>
+  <p>Event time:</p> <input type="text" name="time" value= <%=@event.time%> ><br>
+  <br>
+  <input type="submit" value="submit">
+</form>
+<br>
+<br>
+<form action="/venue/<%= @venue.id %>/<%= @event.id %>/delete" method="POST">
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Delete event">
+</form>
